@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>css/dark_theme.css</file>
+        <file>icons/cross_grey.png</file>
+    </qresource>
+</RCC>
