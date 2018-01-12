@@ -79,7 +79,7 @@ QAction* MainWindow::addAction(const QString &name)
   auto action = menu->addAction(name.split('/').last());
 
   connect(action, &QAction::triggered, [this, action](auto /*triggered*/) {
-    emit signalActionTriggered(action);
+    emit this->signalActionTriggered(action);
   });
 
   return action;
