@@ -39,8 +39,6 @@ MainWindow::MainWindow(QWidget* parent)
   connect(closeAction, SIGNAL(triggered()), this, SLOT(close()));
 }
 
-MainWindow::~MainWindow() {}
-
 void MainWindow::addMenu(QMenu* menu)
 {
   QToolButton* toolButton = new QToolButton(_toolBar);
@@ -80,18 +78,20 @@ QAction* MainWindow::addAction(const QString &name)
   auto menu = addMenu(name.left(name.lastIndexOf('/') - 1));
   auto action = menu->addAction(name.split('/').last());
 
-  connect(action, &QAction::triggered, [this, action]() {
+  connect(action, &QAction::triggered, [this, action](auto /*triggered*/) {
     emit signalActionTriggered(action);
-  };
+  });
 
   return action;
 }
 
-QAction* MainWindow::addAction(const QString &name, std::function<void (QAction *)> reaction)
+QAction* MainWindow::addAction(const QString &name, Reaction reaction)
 {
   auto action = addAction(name);
 
-  connect(action, &QAction::triggered, reaction);
+  connect(action, &QAction::triggered, [action, reaction](auto /*triggered*/) {\
+    reaction(action);
+  });
 
   return action;
 }
