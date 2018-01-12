@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="css/dark_theme">css/dark_theme.css</file>
+        <file alias="icons/cross_grey">icons/cross_grey.png</file>
+    </qresource>
+</RCC>
